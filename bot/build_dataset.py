@@ -4,16 +4,22 @@ import json
 pairs=[]
 chatterbot=[]
 character="Chandler"
-transcripts=open("transcripts").read()
-ocurrences=re.findall(r"<p><strong>.*</p>\n<p><strong>"+character+"</strong>: .*</p>", transcripts)
+transcripts=open("transcripts", encoding="ISO-8859-1").read()
+#print(transcripts)
+ocurrences=re.findall(r"<p>.*:<.*> ([^<]*).*</p>[\n]*<p>.*Chandler.*:<.*> ([^<]*)</p>", transcripts)
+print(len(ocurrences))
+
+#print(ocurrences)
 for line in ocurrences:
-    line=line.replace("<em>", "*");
-    line=line.replace("</em>", "*");
-    matched=re.match(r"<p><strong>.*</strong>.*: ([^<]*).*</p>\n<p><strong>"+character+"</strong>: ([^<]*)</p>", line)
-    question=str(matched.group(1))
-    answer=str(matched.group(2))
+    question=line[0]
+    answer=line[1]
     pairs.append({"question":question, "answer":answer})
     chatterbot.append([question, answer])
-open("pairs.json", "w").write(json.dumps(pairs))
+#open("pairs.json", "w").write(json.dumps(pairs))
 print(len(pairs))
 open("chatterbot.json", "w").write(json.dumps({"conversations":chatterbot}))
+
+'''   line=line.replace("<em>", "*");
+    line=line.replace("</em>", "*");
+    matched=re.match(r"<p>.*: ([^<]*).*</p>.*<p>.*Chandler.*: ([^<]*)</p>", line)
+'''   
