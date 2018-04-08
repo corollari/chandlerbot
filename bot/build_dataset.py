@@ -3,6 +3,7 @@ import json
 
 pairs=[]
 chatterbot=[]
+deepQA=""
 character="Chandler"
 transcripts=open("transcripts", encoding="ISO-8859-1").read()
 #print(transcripts)
@@ -19,9 +20,11 @@ for line in ocurrences:
     answer=re.sub("\\n", " ", answer)
     pairs.append({"question":question, "answer":answer})
     chatterbot.append([question, answer])
+    deepQA+=question+"\n"+answer+"\n===\n"
 #open("pairs.json", "w").write(json.dumps(pairs))
 print(len(pairs))
 open("chatterbot.json", "w").write(json.dumps({"conversations":chatterbot}))
+open("deepQA.txt", "w").write(deepQA[:-4])
 
 '''   line=line.replace("<em>", "*");
     line=line.replace("</em>", "*");

@@ -10,9 +10,10 @@ chatbot = ChatBot(
 
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
-chatterbot = ChatBot("Training Example",
+chatterbot = ChatBot("Chandler",
+        read_only=True,
         input_adapter='chatterbot.input.TerminalAdapter',
-    output_adapter='chatterbot.output.TerminalAdapter')
+        output_adapter='chatterbot.output.TerminalAdapter')
 chatterbot.set_trainer(ChatterBotCorpusTrainer)
 
 chatterbot.train(
