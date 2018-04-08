@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Assets/dest/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
-    <h1>Flask Chatterbot Example</h1>
-    <h3>A web implementation of <a href="https://github.com/gunthercox/ChatterBot">ChatterBot</a> using Flask.</h3>
-    <div>
+   <header>
+    <h1>Meet Chandlerbot</h1>
+    <h3>Chat with Chandler Bing from Friends</h3>
+    </header>
+    <div class="wrapper">
       <div id="chatbox">
-        <p class="botText"><span>Hi! I'm Chatterbot.</span></p>
+        <p class="botText"><span>Hi! I'm Chandler</span></p>
       </div>
+      </div>
+      <div style="background-color: white;
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    bottom: 0";>
       <div id="userInput">
         <input id="textInput" type="text" name="msg" placeholder="Message">
         <input id="buttonInput" type="submit" value="Send">
+      </div>
       </div>
       <script>
         function getBotResponse() {
@@ -21,6 +31,7 @@
           var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
           $("#textInput").val("");
           $("#chatbox").append(userHtml);
+            window.scrollTo(0,document.body.scrollHeight);
           document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           $.get("/get", { msg: rawText }).done(function(data) {
             var botHtml = '<p class="botText"><span>' + data + '</span></p>';
@@ -37,6 +48,6 @@
           getBotResponse();
         })
       </script>
-    </div>
+    
   </body>
 </html>
