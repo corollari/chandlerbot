@@ -4,10 +4,10 @@ import json
 pairs=[]
 chatterbot=[]
 deepQA=""
-character="Chandler"
+character=""
 transcripts=open("transcripts", encoding="ISO-8859-1").read()
 #print(transcripts)
-ocurrences=re.findall(r"<p>.*:<.*> ([^<]*).*</p>[\n]*<p>.*Chandler.*:<.*> ([^<]*)</p>", transcripts)
+ocurrences=re.findall(r"<p>.*:<.*> ([^<]*).*</p>[\n]*<p>.*Joey.*:<.*> ([^<]*)</p>", transcripts)
 print(len(ocurrences))
 
 #print(ocurrences)
@@ -23,8 +23,8 @@ for line in ocurrences:
     deepQA+=question+"\n"+answer+"\n===\n"
 #open("pairs.json", "w").write(json.dumps(pairs))
 print(len(pairs))
-open("chatterbot.json", "w").write(json.dumps({"conversations":chatterbot}))
-open("deepQA.txt", "w").write(deepQA[:-4])
+open("chatterbot_joey.json", "w").write(json.dumps({"conversations":chatterbot}))
+open("deepQA_joey.txt", "w").write(deepQA[:-4])
 
 '''   line=line.replace("<em>", "*");
     line=line.replace("</em>", "*");
