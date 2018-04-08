@@ -12,7 +12,11 @@ print(len(ocurrences))
 #print(ocurrences)
 for line in ocurrences:
     question=line[0]
+    question=re.sub("\([^\)]*\)", "", question)
+    question=re.sub("\\n", " ", question)
     answer=line[1]
+    answer=re.sub("\([^\)]*\)", "", answer)
+    answer=re.sub("\\n", " ", answer)
     pairs.append({"question":question, "answer":answer})
     chatterbot.append([question, answer])
 #open("pairs.json", "w").write(json.dumps(pairs))
